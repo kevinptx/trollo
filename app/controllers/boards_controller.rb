@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   def index
     @boards = current_user.boards
@@ -10,13 +10,16 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
+    render partial: "form"
   end
 
   def create
     @board = current_user.boards.new(board_params)
     if @board.save
+      flash[:success] = "Board Created!"
       redirect_to boards_path
     else
+      flash[:error] = "Error #{board.errors.full_messages.join("\n")}"
       render :new
     end
   end

@@ -4,6 +4,7 @@
 <%= link_to 'Add Board', new_board_path %>
 <h3>Your Boards:</h3>
 <ul>
+<h2><%= @boards.length <= 0 ? "No Boards - Add One" : "" %></h2>
   <% @boards.each do |board| %>
     <li>
       <%= board.name %>
