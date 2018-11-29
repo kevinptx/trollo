@@ -12,19 +12,19 @@
         <h3><%= list.title %></h3>
       
         <%= link_to 'New Card', new_list_card_path(list), class:"ui mini green button inverted" %>
-        <hr>
+        <div class="ui divider"></div>
           <% list.cards.sort_by(&:priority).each do |card| %>
           <div class="five wide column">
             <div class="ui raised center aligned segment">
               <h3><%= card.title%></h3>
-              <hr>
+              <div class="ui divider"></div>
               <p><%= card.description%></p>
               <%= link_to "Edit Card", edit_list_card_path(list, card), class: "ui mini orange button inverted" %>
               <%= link_to "Delete Card", list_card_path(list, card), method: :delete, class: "ui mini red button inverted" %>
                 </div>
               </div>
             <%end%>
-          <hr/>
+            <div class="ui divider"></div>
           <%= link_to "Edit List", edit_board_list_path(@board, list), class: "ui mini orange button inverted" %>
           <%= link_to "Delete List", list, method: :delete, class: "ui mini red button inverted" %>
               </div>

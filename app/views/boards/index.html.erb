@@ -1,6 +1,6 @@
 <h1><%= current_user.first_name %>'s Boards</h1>
 <%= link_to 'New Board', new_board_path, class:"ui green button inverted" %>
-<hr>
+<div class="ui divider"></div>
 <h2><%= @boards.length <= 0 ? "No Boards - Add One" : "" %></h2>
   <div class="ui grid">
   <% @boards.each do |board| %>
