@@ -7,6 +7,8 @@
   <div class="three wide column">
   <div class="ui raised center aligned segment">
       <h3><%= link_to board.name, board_path(board)%></h3> 
+      <%= link_to "Delete Board", board, method: :delete, class: "ui red button inverted" %>
+
        </div>
     </div>
   <% end %>
