@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:edit, :update, :destroy]
 
   def new
-    @lists = @board.lists.new
+    @list = @board.lists.new
   end
 
   def create
@@ -20,10 +20,15 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
-      redirect_to lists_path
+      redirect_to @board
     else
       render :edit
     end
+  end
+
+  def destroy
+    @list.destroy
+    redirect_to board_path(@list.board_id)
   end
 
   private
