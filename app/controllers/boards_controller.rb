@@ -6,11 +6,11 @@ class BoardsController < ApplicationController
   end
 
   def show
+    @lists = @board.lists.all
   end
 
   def new
     @board = Board.new
-    render partial: "form"
   end
 
   def create
@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @account.destroy
+    @board.destroy
     redirect_to boards_path
   end
 

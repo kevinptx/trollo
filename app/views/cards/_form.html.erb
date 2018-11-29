@@ -1,0 +1,36 @@
+<% if @card %>
+
+  <%= form_with(model: [@list, @card], local: true, class: "ui form") do |f| %>
+    <div class="field">
+      <%= f.label "Card Name" %>
+      <%= f.text_field :name, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label "Description" %>
+      <%= f.text_field :description, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label "Priority" %>
+      <%= f.number_field :priority, class: "input" %>
+    </div>
+  <%= f.submit nil, class: "ui blue button" %>
+  <% end %>
+
+
+<% else %>
+  <%= form_with(model: [@list, @cards], local: true, class: "ui form") do |f| %>
+    <div class="field">
+      <%= f.label "Task Name" %>
+      <%= f.text_field :name, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label "Priority" %>
+      <%= f.number_field :priority, class: "input" %>
+    </div>
+    <%= f.submit nil, class: "ui blue button" %>
+  <% end %>
+<%end%>
