@@ -1,36 +1,38 @@
 <h1><%= @board.name %></h1>
 <hr />
-<button><%= link_to "View Lists", board_lists_path(@board) %></button>
 <br />
 <%= link_to "Edit", edit_board_path(@board), class: "ui orange button inverted" %>
 <%= link_to "Delete Board", @board, method: :delete, class: "ui red button inverted" %>
 <%= link_to 'New List', new_board_list_path(@board), class: "ui green button inverted" %>
+<br>
+<br>
 <hr>
-
+<br>
 <div class="ui grid">
   <% @board.lists.sort_by(&:priority).each do |list| %>
     <div class="five wide column">
       <div class="ui raised center aligned segment">
-        <h3><%= list.name %></h3>
-        <%= link_to 'New Task', new_list_task_path(list), class:"ui mini green button inverted" %>
+        <h3><%= list.title %></h3>
+        <%= link_to 'New Card', new_list_card_path(list), class:"ui mini green button inverted" %>
         <hr>
           <% list.cards.sort_by(&:priority).each do |card| %>
           <div class="five wide column">
             <div class="ui raised center aligned segment">
-              <h3><%= card.name%></h3>
+              <h3><%= card.title%></h3>
               <hr>
               <p><%= card.description%></p>
-              <%= link_to "Edit", edit_list_card_path(card.list_id, card.id), class: "ui mini orange button inverted" %>
-              <%= link_to "Delete", list_card_path(card.list_id, card.id), method: :delete, class: "ui mini red button inverted" %>
+              <%= link_to "Edit", edit_list_card_path(list, card), class: "ui mini orange button inverted" %>
+              <%= link_to "Delete", list_card_path(list, card), method: :delete, class: "ui mini red button inverted" %>
                 </div>
               </div>
             <%end%>
           <hr/>
-          <%= link_to "Edit", edit_board_list_path(list.board_id, list.id), class: "ui mini orange button inverted" %>
+          <%= link_to "Edit", edit_board_list_path(@board, list), class: "ui mini orange button inverted" %>
           <%= link_to "Delete", list, method: :delete, class: "ui mini red button inverted" %>
       </div>
     </div>
   <% end %>
 </div>
-
-<button><%= link_to "View Boards", boards_path %></button>
+<br>
+<br>
+<button><%= link_to "View All Boards", boards_path %></button>

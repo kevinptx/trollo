@@ -16,10 +16,8 @@ class BoardsController < ApplicationController
   def create
     @board = current_user.boards.new(board_params)
     if @board.save
-      flash[:success] = "Board Created!"
       redirect_to boards_path
     else
-      flash[:error] = "Error #{board.errors.full_messages.join("\n")}"
       render :new
     end
   end

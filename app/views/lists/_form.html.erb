@@ -2,8 +2,8 @@
 
   <%= form_with(model: [@board, @list], local: true, class: "ui form") do |f| %>
     <div class="field">
-      <%= f.label "List Name" %>
-      <%= f.text_field :name, class: "input" %>
+      <%= f.label "List Title" %>
+      <%= f.text_field :title, class: "input" %>
     </div>
     <div class="field">
       <%= f.label "Priority" %>
@@ -15,8 +15,8 @@
 <% else %>
   <%= form_with(model: [@board, @lists], local: true, class: "ui form") do |f| %>
     <div class="field">
-      <%= f.label "List Name" %>
-      <%= f.text_field :name, class: "input" %>
+      <%= f.label "List Title" %>
+      <%= f.text_field :title, class: "input" %>
     </div>
     <div class="field">
       <%= f.label "Priority" %>
