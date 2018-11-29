@@ -1,5 +1,5 @@
+#this is editing an existing card. It's checking to see if @card exists because it's already created...maybe do a ternary at the top. 
 <% if @card %>
-
   <%= form_with(model: [@list, @card], local: true, class: "ui form") do |f| %>
     <div class="field">
       <%= f.label "Card Title" %>
@@ -16,7 +16,7 @@
   <%= f.submit nil, class: "ui blue button" %>
   <% end %>
 
-
+#this is adding one to many cards and is creating a new one.
 <% else %>
   <%= form_with(model: [@list, @cards], local: true, class: "ui form") do |f| %>
     <div class="field">
@@ -24,7 +24,7 @@
       <%= f.text_field :title, class: "input" %>
     </div>
     <div class="field">
-      <%= f.label :description %>
+      <%= f.label "Description" %>
       <%= f.text_field :description, class: "input" %>
     </div>
     <div class="field">

@@ -6,6 +6,10 @@ class CardsController < ApplicationController
     @cards = @list.cards.new
   end
 
+  def new
+    @card = Card.new
+  end
+
   def create
     @list.cards.create(card_params)
     redirect_to board_path(@list.board_id)
@@ -16,7 +20,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to board_id(@list.board_id)
+      redirect_to board_path(@list.board_id)
     else
       render :edit
     end
@@ -38,6 +42,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:name, :description, :priority)
+    params.require(:card).permit(:title, :description, :priority)
   end
 end
