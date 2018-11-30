@@ -10,13 +10,14 @@ class BoardsController < ApplicationController
   end
 
   def new
-    @board = Board.new
+    @board = current_user.boards.new
   end
 
   def create
-    @board = current_user.boards.new(board_params)
+    @board = current_user.boards.create(board_params)
     if @board.save
-      redirect_to boards_path
+      flash[:success] = "Board Created"
+      redirect_to @board
     else
       render :new
     end
@@ -27,7 +28,8 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to boards_path
+      flash[:success] = "Board Updated"
+      redirect_to @board
     else
       render :edit
     end
@@ -35,13 +37,14 @@ class BoardsController < ApplicationController
 
   def destroy
     @board.destroy
-    redirect_to boards_path
+    flash[:success] = "Board Deleted"
+    redirect_to root_path
   end
 
   private
 
   def board_params
-    params.require(:board).permit(:name)
+    params.require(:board).permit(:name, :user_id)
   end
 
   def set_board
